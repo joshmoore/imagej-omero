@@ -61,10 +61,10 @@ public class OpenFromOMERO extends OMEROCommand {
 	public void run() {
 		final String omeroSource =
 			"server=" + getServer() + //
-			"&port=" + getPort() + //
-			"&user=" + getUser() + //
-			"&password=" + getPassword() + //
-			"&imageID=" + imageID + //
+			"\nport=" + getPort() + //
+			"\nuser=" + getUser() + //
+			"\npassword=" + getPassword() + //
+			"\nimageID=" + imageID + //
 			".omero";
 
 		try {

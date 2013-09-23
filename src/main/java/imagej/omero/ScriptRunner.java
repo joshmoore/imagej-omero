@@ -111,6 +111,11 @@ public class ScriptRunner extends AbstractContextual {
 		// NB: Make ImageJ startup less verbose.
 		System.setProperty("scijava.log.level", "warn");
 
+		// HACK: Something on OMERO's classpath sets the log level to DEBUG.
+		java.util.logging.Logger.getLogger(
+			java.util.logging.Logger.GLOBAL_LOGGER_NAME).setLevel(
+			java.util.logging.Level.WARNING);
+
 		// initialize script runner
 		final ScriptRunner scriptRunner = new ScriptRunner();
 

@@ -57,9 +57,9 @@ public class SaveToOMERO extends OMEROCommand {
 	public void run() {
 		final String omeroDestination =
 			"server=" + getServer() + //
-			"&port=" + getPort() + //
-			"&user=" + getUser() + //
-			"&password=" + getPassword() + //
+			"\nport=" + getPort() + //
+			"\nuser=" + getUser() + //
+			"\npassword=" + getPassword() + //
 			".omero";
 
 		try {

@@ -306,8 +306,10 @@ public class DefaultOMEROService extends AbstractService implements
 		// Will need to rethink how SCIFIO conveys source and destination metadata.
 		// The RandomAccessInput/OutputStream design is probably too narrow.
 		final String omeroSource =
-			"server=localhost&port=4064" + // FIXME: Eliminate hardcoded values!
-			"&sessionID=" + client.getSessionId() + "&imageID=" + imageID + ".omero";
+			"server=localhost\nport=4064" + // FIXME: Eliminate hardcoded values!
+			"\nsessionID=" + client.getSessionId() + //
+			"\nimageID=" + imageID + //
+			".omero";
 
 		// TEMP: Until SCIFIO issue #63 is resolved.
 		// https://github.com/scifio/scifio/pull/63
@@ -326,8 +328,10 @@ public class DefaultOMEROService extends AbstractService implements
 		// Will need to rethink how SCIFIO conveys source and destination metadata.
 		// The RandomAccessInput/OutputStream design is probably too narrow.
 		final String omeroDestination =
-			"server=localhost&port=4064" + // FIXME: Eliminate hardcoded values!
-			"&sessionID=" + client.getSessionId() + ".omero";
+			dataset.getName() + //
+			"\nserver=localhost\nport=4064" + // FIXME: Eliminate hardcoded values!
+			"\nsessionID=" + client.getSessionId() + //
+			".omero";
 
 		// TEMP: Until SCIFIO issue #63 is resolved.
 		// https://github.com/scifio/scifio/pull/63
