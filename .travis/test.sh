@@ -5,24 +5,16 @@
 set -e
 set -x
 
-export BACKUPDIR=${BACKUPDIR:-/tmp}
-export BACKUPSRC=${BACKUPSRC:-/tmp/backup.zip}
-export BACKUPURL=${BACKUPURL:-file:///tmp/fakeurl.zip} # TODO: move to remote resource
-
-export INFRABRANCH=${INFRABRANCH:-master}
-export INFRAREPO=${INFRAREPO:-git://github.com/openmicroscopy/omero-test-infra}
-
-# If not present, try to download
-if [ ! -f $BACKUPDIR/imagejomero_dbdata.tar ];
-then
-    curl $BACKUPURL > $BACKUPSRC
-    unzip -d $BACKUPDIR $BACKUPSRC
-fi
-
+export BACKUPURL=${BACKUPURL:-file:///.travis/omero_test_infra_backup.zip}
+export INFRABRANCH=${INFRABRANCH:-integration}
+export INFRAREPO=${INFRAREPO:-git://github.com/joshmoore/omero-test-infra}
 if [ ! -d .omero ];
 then
     git clone -b ${INFRABRANCH} ${INFRAREPO} .omero
 fi
+
+.omero/download.sh ${BACKUPURL} $PWD/.travis
+.omero/persist.sh --restore /tmp
 
 # FIXME: setting DOCKER_ARGS here should work but it's not.
 # It fails with:
